@@ -9,3 +9,9 @@ export interface Message {
   sender: Sender;
   disappearAt?: number;
 }
+
+export interface UserData {
+  username: string;
+  password: string;
+  loginCode: string;
+}

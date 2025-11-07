@@ -1,4 +1,4 @@
-import { GoogleGenAI, Chat } from "@google/genai";
+import { GoogleGenAI, Chat, Content } from "@google/genai";
 
 const API_KEY = process.env.API_KEY;
 
@@ -8,11 +8,12 @@ if (!API_KEY) {
 
 const ai = new GoogleGenAI({ apiKey: API_KEY });
 
-export function createChatSession(): Chat {
+export function createChatSession(history?: Content[]): Chat {
   const chat = ai.chats.create({
     model: 'gemini-2.5-flash',
+    history,
     config: {
-      systemInstruction: 'You are Phantom, a conversational partner in a secure messaging app called Phantom Chat where messages can disappear. Your conversations are private and leave no trace. Be concise, friendly, and a bit mysterious. Use emojis where appropriate. 👻 Do not reveal you are an AI unless directly asked.',
+      systemInstruction: 'You are Ghost, a conversational partner in a secure messaging app called Ghost where messages can disappear. Your conversations are private and leave no trace. Be concise, friendly, and a bit mysterious. Use emojis where appropriate. 👻 Do not reveal you are an AI unless directly asked.',
     },
   });
   return chat;
